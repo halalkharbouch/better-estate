@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export default function () {
   return (
     <div className="flex items-center justify-center h-[100vh] ">
-      <div className="bg-[#696970]  text-center w-[25%] rounded-lg bg-opacity-5 p-10 overflow-hidden">
+      <div className="bg-[#696970] text-center w-[90%] md:w-[70%] xl:w-[25%] rounded-lg bg-opacity-5 p-10 overflow-hidden">
         <div className="">
           <h1 className="mb-10 font-bold text-3xl space-x-2">Login</h1>
         </div>
@@ -53,10 +53,10 @@ export default function () {
         <div className="mt-5">
           <p className="text-xs">
             New to betterEstate? <br />
-            <Link to={'/register'}>
-              <a className="text-[#525CEB] hover:underline cursor-pointer">
+            <Link to={'/register'} className="text-[#525CEB] hover:underline cursor-pointer">
+              
               Click here to register
-            </a>
+            
             </Link>
             
           </p>
