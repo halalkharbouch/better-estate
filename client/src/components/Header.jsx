@@ -1,30 +1,86 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 export default function Header() {
   return (
-    <header className='flex justify-between items-center mx-[10%] p-3'>
+    <header className="flex justify-between items-center mx-[10%] p-3">
+      <Link to={"/"}>
+        <motion.h1 whileHover={{
+            scale:1.1,
+            textShadow:"0px 0px 2px rgb(255,255,255)",
+            transition:{
+                duration:0.3,
+                yoyo:Infinity
+            }
+            }} 
+        >
+          <span>Better</span>
+          <span className="text-[#696970]">Estate</span>
+        </motion.h1>
+      </Link>
+      <ul className="flex justify-evenly gap-10">
         <Link to={"/"}>
-            <h1>
-                <span>Better</span>
-                <span className='text-[#696970]'>Estate</span>
-            </h1>
+          <motion.li
+            whileHover={{
+              scale: 1.05,
+              textShadow: "0px 0px 8px rgb(255,255,255)",
+              transition: {
+                duration: 0.3,
+                yoyo: Infinity,
+              },
+            }}
+          >
+            Home
+          </motion.li>
         </Link>
-        <ul className='flex justify-evenly gap-10'>
-            <Link to={'/'}>
-                <li>Home</li>
-            </Link>
-            <Link to={'/about'}>
-                <li>About</li>
-            </Link>
-            <Link to={'/contact'}>
-                <li>Contact</li>
-            </Link>
-        </ul>
+        <Link to={"/about"}>
+          <motion.li
+            whileHover={{
+              scale: 1.05,
+              textShadow: "0px 0px 8px rgb(255,255,255)",
+              transition: {
+                duration: 0.3,
+                yoyo: Infinity,
+              },
+            }}
+          >
+            About
+          </motion.li>
+        </Link>
+        <Link to={"/contact"}>
+          <motion.li
+            whileHover={{
+              scale: 1.05,
+              textShadow: "0px 0px 8px rgb(255,255,255)",
+              transition: {
+                duration: 0.3,
+                yoyo: Infinity,
+              },
+            }}
+          >
+            Contact
+          </motion.li>
+        </Link>
+      </ul>
 
-        <Link to={'/login'}>
-            <button className='bg-[#696970] px-4 py-2 rounded-lg hover:opacity-90'>Login</button>
-        </Link>
+      <Link to={"/login"}>
+        <motion.button
+          whileHover={{
+            scale: 1.05,
+
+            boxShadow: "0px 0px 8px rgb(255,255,255)",
+            transition: {
+              duration: 0.3,
+              yoyo: Infinity,
+            },
+          }}
+          whileTap={{ scale: 0.9 }}
+          className="bg-[#696970] px-4 py-1 rounded-lg hover:opacity-90"
+        >
+          Login
+        </motion.button>
+      </Link>
     </header>
-  )
+  );
 }
