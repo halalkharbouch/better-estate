@@ -1,8 +1,23 @@
 import googleIcon from "../assets/media/icons/google-icon.png";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function () {
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const [error, setError] = useState(null)
+  const [loading, setLoading] = useState(false)
+
+  console.log(formData);
+
+  const handleChange = (e) => {
+    setFormData((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+  }
   return (
     <div className="flex items-center justify-center h-[100vh] ">
       <div className="bg-[#696970] text-center w-[90%] md:w-[70%] xl:w-[25%] rounded-lg bg-opacity-5 p-10 overflow-hidden">
@@ -15,11 +30,15 @@ export default function () {
               className="p-2 rounded-md outline-none border border-[#696970] bg-transparent"
               type="email"
               placeholder="Email"
+              id="email"
+              onChange={handleChange}
             />
             <input
               className="p-2 rounded-md outline-none border border-[#696970] bg-transparent"
               type="password"
               placeholder="Password"
+              id="password"
+              onChange={handleChange}
             />
             <motion.button whileHover={{
                 scale:1.02,
