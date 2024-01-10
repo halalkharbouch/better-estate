@@ -13,7 +13,31 @@ export default function () {
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
 
-  console.log(formData);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true)
+    const res = await fetch("/api/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await res.json();
+    
+    if (data.error) {
+      setError(data.error)
+      setLoading(false)
+      return
+    }
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("user", JSON.stringify(data.user));
+    setLoading(false)
+    navigate("/");
+  };
+
+  
 
   const handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.id]: e.target.value }));
@@ -25,7 +49,7 @@ export default function () {
           <h1 className="mb-10 font-bold text-3xl space-x-2">Login</h1>
         </div>
         <div className="">
-          <form className="flex flex-col gap-4 mt-10">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4 mt-10">
             <input
               className="p-2 rounded-md outline-none border border-[#696970] bg-transparent"
               type="email"
