@@ -68,7 +68,14 @@ export default function Header() {
         </Link>
       </ul>
       {currentUser ? (
-        <img width={35} src={currentUser.avatar} alt="" className="rounded-full cursor-pointer"/>
+        <motion.img width={35} whileHover={{
+          scale: 1.1,
+          border: '2px solid #525CEB',
+          transition: {
+            duration: 0.3,
+            yoyo: Infinity,
+          }
+        }} src={currentUser.avatar} alt="" className="rounded-full cursor-pointer"/>
       ) : (
         <Link to={"/login"}>
           <motion.button
