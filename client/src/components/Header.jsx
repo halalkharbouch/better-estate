@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
@@ -7,10 +7,37 @@ import {
   FiLogOut,
 } from "react-icons/fi";
 import ProfileDropDown from "./ProfileDropDown";
+import { signOutStart, signOutSuccess, signOutFailure } from "../redux/user/userSlice";
+import { useDispatch } from "react-redux";
 
 export default function Header() {
   const { currentUser } = useSelector((state) => state.user);
   const [open, setOpen] = useState(false);
+  const dispatch = useDispatch();
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const handleSignout = async () => {
+    setLoading(true);
+    try {
+      dispatch(signOutStart());
+      const res = await fetch("/api/auth/logout")
+      const data = await res.json();
+      if (data.success === false) {
+        setError(data.message)
+        setLoading(false)
+        dispatch(signOutFailure(data.message))
+        return
+      }
+      dispatch(signOutSuccess(data))
+      setLoading(false)
+
+    } catch (error) {
+      setLoading(false)
+      setError(data.message)
+      dispatch(signOutFailure(data.message))
+    }
+  }
 
   return (
     <header className="flex justify-between items-center mx-[10%] p-3">
@@ -102,8 +129,14 @@ export default function Header() {
             style={{ originY: "top", translateX: "-50%" }}
             className="flex flex-col gap-2 p-2 rounded-lg bg-white shadow-xl absolute top-[120%] left-[50%] w-48 overflow-hidden"
           >
-            <ProfileDropDown setOpen={setOpen} Icon={FiEdit} text="Edit Profile" />
-            <ProfileDropDown setOpen={setOpen} Icon={FiLogOut} text="Signout" />
+            <Link to={'/profile'}>
+              <ProfileDropDown setOpen={setOpen} Icon={FiEdit} text="View Profile" />
+            </Link>
+            
+            <button onClick={handleSignout}>
+              <ProfileDropDown setOpen={setOpen} Icon={FiLogOut} text="Signout" />
+            </button>
+            
             
           </motion.ul>
         </motion.div>
