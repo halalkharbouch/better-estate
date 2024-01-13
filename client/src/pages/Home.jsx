@@ -8,7 +8,10 @@ export default function Home() {
     <div className="">
         <div className="div">
             <Header />
-            <Hero />
+            <div className="">
+              <Hero />
+            </div>
+            
         </div>
     </div>
         

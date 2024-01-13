@@ -2,6 +2,7 @@ import HeroImg from "../assets/media/images/hero-img.png";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Loading from "./Loading";
+import { FaStar } from "react-icons/fa";
 
 export default function Hero() {
   return (
@@ -31,6 +32,16 @@ export default function Hero() {
               </motion.button>
             </Link>
             
+          </div>
+          <div className="flex mt-5 px-3">
+                <FaStar className="text-[#ffd700]"/>
+                <FaStar className="text-[#ffd700]"/>
+                <FaStar className="text-[#ffd700]"/>
+                <FaStar className="text-[#ffd700]"/>
+                <FaStar className="text-[#ffd700]"/>
+          </div>
+          <div className="px-3">
+            <p className="text-xs mt-1 text-primary">By 100k <span className="text-secondary">clients</span></p>
           </div>
         </div>
         <div className="col-span-6 relative z-0 ml-auto">

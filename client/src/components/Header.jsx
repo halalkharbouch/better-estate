@@ -16,6 +16,7 @@ export default function Header() {
   const dispatch = useDispatch();
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [menuIsOpen, setMenuIsOpen] = useState(false);
 
   const handleSignout = async () => {
     setLoading(true);

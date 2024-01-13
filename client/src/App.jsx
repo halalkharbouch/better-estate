@@ -5,6 +5,7 @@ import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import Profile from "./pages/Profile.jsx";
 import PrivateRoute from "./pages/PrivateRoute.jsx";
+import AddListing from "./pages/AddListing.jsx";
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
           <Route path="/register" element={<Register />} />
           <Route element={<PrivateRoute />}>
             <Route path="/profile" element={<Profile />} />
+            <Route path="/add-listing" element={<AddListing />} />
           </Route>
         </Routes>
       </BrowserRouter>

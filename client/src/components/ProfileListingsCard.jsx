@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 export default function ProfileListingsCard() {
   const { currentUser } = useSelector((state) => state.user);
@@ -21,20 +22,22 @@ export default function ProfileListingsCard() {
           <h2 className="">38</h2>
         </div>
         <div className="mt-10 mx-auto">
-          <motion.button
-            whileHover={{
-              scale: 1.02,
-              boxShadow: "0px 0px 8px rgb(255,255,255)",
-              transition: {
-                duration: 0.3,
-                yoyo: Infinity,
-              },
-            }}
-            whileTap={{ scale: 0.9 }}
-            className="px-8 py-3 rounded-3xl bg-[#696970]"
-          >
-            Add Lisitngs
-          </motion.button>
+          <Link to={'/add-listing'}>
+            <motion.button
+              whileHover={{
+                scale: 1.02,
+                boxShadow: "0px 0px 8px rgb(255,255,255)",
+                transition: {
+                  duration: 0.3,
+                  yoyo: Infinity,
+                },
+              }}
+              whileTap={{ scale: 0.9 }}
+              className="px-8 py-3 rounded-3xl bg-[#696970]"
+            >
+              Add Lisitngs
+            </motion.button>
+          </Link>
         </div>
       </div>
     </div>
