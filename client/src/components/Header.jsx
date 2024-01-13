@@ -146,14 +146,14 @@ export default function Header() {
             whileHover={{
               scale: 1.05,
 
-              boxShadow: "0px 0px 8px rgb(255,255,255)",
+              
               transition: {
                 duration: 0.3,
                 yoyo: Infinity,
               },
             }}
             whileTap={{ scale: 0.9 }}
-            className="bg-[#696970] px-4 py-1 rounded-lg hover:opacity-90"
+            className="bg-accent px-7 py-2 rounded-full hover:opacity-90"
           >
             Login
           </motion.button>
