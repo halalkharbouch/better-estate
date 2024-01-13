@@ -9,6 +9,8 @@ import {
   signInSuccess,
   signInFailure,
 } from "../redux/user/userSlice.js";
+import Loading from "../components/Loading";
+
 
 export default function () {
   const dispatch = useDispatch()
@@ -36,7 +38,7 @@ export default function () {
       const data = await res.json();
       if (data.success === false) {
         dispatch(signInFailure(data.message));
-        setError(data.message);
+        setError("Invalid credentials");
         setLoading(false);
         return;
       }
@@ -45,7 +47,7 @@ export default function () {
       navigate("/");
     } catch (error) {
       dispatch(signInFailure(error.message));
-      setError(error.message);
+      setError("Invalid credentials");
       setLoading(false);
     }
 
@@ -89,7 +91,8 @@ export default function () {
               whileTap={{ scale: 0.9 }}
               className="bg-[#525CEB] text-white p-2 rounded-md"
             >
-              Login
+              {loading ? <Loading width={30} /> : 'Login'}
+              
             </motion.button>
             <motion.button
               whileHover={{
@@ -106,6 +109,7 @@ export default function () {
               <img width={25} src={googleIcon} alt="google-icon" />
               <span>Continue with google</span>
             </motion.button>
+            <p className="text-red-600">{error && error}</p>
           </form>
         </div>
         <div className="mt-5">

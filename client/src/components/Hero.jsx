@@ -1,6 +1,7 @@
 import HeroImg from "../assets/media/images/hero-img.png";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import Loading from "./Loading";
 
 export default function Hero() {
   return (
@@ -16,7 +17,7 @@ export default function Hero() {
             needs. Welcome home to a new era of real estate excellence.
           </p>
           <div className="">
-            <Link to={'/login'}>
+            <Link to={"/login"}>
               <motion.button
                 whileHover={{
                   scale: 1.1,
@@ -29,9 +30,10 @@ export default function Hero() {
                 Get Started
               </motion.button>
             </Link>
+            
           </div>
         </div>
-        <div className="col-span-6 relative ml-auto">
+        <div className="col-span-6 relative z-0 ml-auto">
           <div className="">
             <svg
               width={600}
