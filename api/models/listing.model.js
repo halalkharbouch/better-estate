@@ -13,6 +13,25 @@ const listingSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  location: {
+    type: String,
+    required: true,
+  },
+  additionalSpaces: {
+    type: String,
+  },
+  heating: {
+    type: String,
+    required: true,
+  },
+  disabledAccess: {
+    type: String,
+    required: true,
+  },
+  security: {
+    type: String,
+    required: true,
+  },
   price: {
     type: Number,
     required: true,
@@ -29,10 +48,6 @@ const listingSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  location: {
-    type: String,
-    required: true,
-  },
   constructionYear: {
     type: Number,
     required: true,
@@ -45,15 +60,12 @@ const listingSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  furnished: {
-    type: Boolean,
+  garden: {
+    type: Number,
     required: true,
   },
-  additionalSpaces: {
-    type: String,
-  },
-  heating: {
-    type: String,
+  furnished: {
+    type: Boolean,
     required: true,
   },
   airConditioning: {
@@ -88,26 +100,17 @@ const listingSchema = new mongoose.Schema({
     type: Boolean,
     required: true,
   },
-  disabledAccess: {
-    type: String,
-    required: true,
-  },
+  
   petFriendly: {
     type: Boolean,
     required: true,
   },
-  garden: {
-    type: Number,
-    required: true,
-  },
+  
   pool: {
     type: Boolean,
     required: true,
   },
-  security: {
-    type: String,
-    required: true,
-  },
+  
   images: {
     type: Array,
     required: true,
