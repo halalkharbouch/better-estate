@@ -4,12 +4,16 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
-
-
 body {
   background-color: #09090b;
   color: #fafafa;
   font-family: 'inter', sans-serif;
+}
+
+input::placeholder {
+  color: #64625d;
+}
+
+textarea::placeholder {
+  color: #64625d;
 }

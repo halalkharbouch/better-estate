@@ -83,8 +83,8 @@ export default function AddListing() {
               <Select
                 className="w-[33%]"
                 styles={colorStyles}
-                defaultValue={options[0]}
                 
+                placeholder={"Type"}
                 options={options}
               />
             </div>
@@ -96,7 +96,6 @@ export default function AddListing() {
 }
 
 const options = [
-  { value: "Type", label: "Type", selected: true, isDisabled: true },
   { value: "Rent", label: "Rent", color: "#fafafa" },
   { value: "Sell", label: "Sell", color: "#fafafa" },
 ];
@@ -118,4 +117,8 @@ const colorStyles = {
       cursor: isDisabled ? "not-allowed" : "pointer",
     };
   },
+  menu: (styles) => ({
+    ...styles,
+    backgroundColor: 'transparent'
+  }),
 }
