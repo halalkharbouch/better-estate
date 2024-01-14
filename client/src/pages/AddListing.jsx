@@ -88,6 +88,73 @@ export default function AddListing() {
                 options={options}
               />
             </div>
+            <div className="flex gap-3">
+              <input
+                className="border w-[12%] p-3 rounded-2xl border-primary bg-transparent "
+                type="text"
+                placeholder="Bedrooms"
+              />
+              <input
+                className="border w-[14%] p-3 rounded-2xl border-primary bg-transparent "
+                type="Number"
+                placeholder="Bathrooms"
+              />
+              <input
+                className="border w-[11%] p-3 rounded-2xl border-primary bg-transparent "
+                type="Number"
+                placeholder="Parking"
+              />
+            </div>
+            <div className="flex gap-3">
+              <div className="flex gap-2 items-center">
+                <label className="text-lg">Furnished</label>
+                <input className="size-5" type="checkbox" />
+              </div>
+              <div className="flex gap-2 items-center">
+                <label className="text-lg">Air Conditiong</label>
+                <input className="size-5" type="checkbox" />
+              </div>
+              <div className="flex gap-2 items-center">
+                <label className="text-lg">Fire Place</label>
+                <input className="size-5" type="checkbox" />
+              </div>
+              <div className="flex gap-2 items-center">
+                <label className="text-lg">Elevator</label>
+                <input className="size-5" type="checkbox" />
+              </div>
+              <div className="flex gap-2 items-center">
+                <label className="text-lg">Ventilation</label>
+                <input className="size-5" type="checkbox" />
+              </div>
+              <div className="flex gap-2 items-center">
+                <label className="text-lg">Intercom</label>
+                <input className="size-5" type="checkbox" />
+              </div>
+              <div className="flex gap-2 items-center">
+                <label className="text-lg">Cable Tv</label>
+                <input className="size-5" type="checkbox" />
+              </div>
+            </div>
+            <div className="flex gap-3">
+              <div className="flex gap-2 items-center">
+                <label className="text-lg">Internet</label>
+                <input className="size-5" type="checkbox" />
+              </div>
+              <div className="flex gap-2 items-center">
+                <label className="text-lg">Garage</label>
+                <input className="size-5" type="checkbox" />
+              </div>
+              <div className="flex gap-2 items-center">
+                <label className="text-lg">Pet Friendly</label>
+                <input className="size-5" type="checkbox" />
+              </div>
+              <div className="flex gap-2 items-center">
+                <label className="text-lg">Pool</label>
+                <input className="size-5" type="checkbox" />
+              </div>
+              
+            </div>
+            
           </form>
         </div>
       </div>
