@@ -9,7 +9,7 @@ export default function AddListing() {
         <Header />
       </div>
       <div className="mt-10 grid grid-cols-12 mx-[10%] p-3">
-        <div className="col-span-8">
+        <div className="col-span-8 pr-5 border-e border-primary border-opacity-80">
           <form className="flex flex-col gap-5">
             <div className="flex gap-3 justify-between">
               <input
@@ -32,7 +32,7 @@ export default function AddListing() {
               <textarea
                 className="border p-3 w-full rounded-2xl border-primary bg-transparent "
                 placeholder="Description"
-                rows="10"
+                rows="6"
               ></textarea>
             </div>
             <div className="flex gap-3 justify-between">
@@ -156,6 +156,22 @@ export default function AddListing() {
             </div>
             
           </form>
+        </div>
+        <div className="col-span-4 px-5 flex flex-col gap-5 flex-1">
+          <p className="text-xl ">Images: 
+          <br />
+          <span className="pt-1 text-xs text-primary">The fisrt image will be the cover</span>
+
+          </p>
+          
+          <div className="flex gap-4">
+            <input className="border rounded-2xl border-primary p-3 " type="file" />
+            <button className="px-6 py-4 rounded-2xl bg-secondary uppercase">Upload</button>
+          </div>
+          <div className="">
+            <button className="px-8 py-4 w-full uppercase bg-green-600 rounded-2xl">Create Listing</button>
+          </div>
+          
         </div>
       </div>
     </div>
