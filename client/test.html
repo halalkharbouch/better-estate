@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Style the container for the file input */
+        .file-input-container {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        /* Style the custom button */
+        .file-input-button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        /* Hide the default file input */
+        input[type="file"] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="file-input-container">
+        <!-- Custom button to trigger the file input -->
+        <label for="fileInput" class="file-input-button">Choose File</label>
+        <!-- Actual file input, hidden from view -->
+        <input type="file" id="fileInput">
+    </div>
+</body>
+</html>
