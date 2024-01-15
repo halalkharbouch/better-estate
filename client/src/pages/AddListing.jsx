@@ -4,6 +4,13 @@ import Select from "react-select";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import {
+  getDownloadURL,
+  getStorage,
+  ref,
+  uploadBytesResumable,
+} from "firebase/storage";
+import { app } from "../firebase.js";
 
 export default function AddListing() {
   const { currentUser } = useSelector((state) => state.user);
@@ -41,8 +48,11 @@ export default function AddListing() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const [images, setImages] = useState([]);
+  const [uploadingImages, setUploadingImages] = useState(false);
+  const [imagesUploadError, setImagesUploadError] = useState(null);
 
-  console.log(formData);
+  console.log(images);
 
   const handleChange = (e) => {
     if (e.target.type === "checkbox") {
@@ -54,6 +64,54 @@ export default function AddListing() {
       setFormData({ ...formData, [e.target.name]: e.target.value });
     }
   };
+
+  const handleImageSubmit = async () => {
+    setUploadingImages(true);
+    setImagesUploadError(false)
+    if (images.length > 0 && images.length + formData.images.length < 7) {
+      const promises = [];
+      images.forEach((image) => {
+        promises.push(storeImage(image));
+      })
+      Promise.all(promises).then(downloadURLs => {
+        setFormData({
+          ...formData,
+          images: formData.images.concat(downloadURLs)
+        })
+        setUploadingImages(false);
+      }).catch(error => {
+        setImagesUploadError("Image upload Failed (2mb max per image)");
+        setUploadingImages(false);
+      })
+    } else {
+      setImagesUploadError("You can only upload 6 images max");
+      setUploadingImages(false);
+    }
+  };
+
+  const storeImage = async (image) => {
+    return new Promise((resolve, reject) => {
+      const storage = getStorage(app);
+      const imageName = `${Date.now()}-${image.name}`;
+      const storageRef = ref(storage, imageName);
+      const uploadTask = uploadBytesResumable(storageRef, image);
+      uploadTask.on(
+        'state_changed',
+        (snapshot) => {
+          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log(`Upload is ${progress}% done`);
+        },
+        (error) => {
+          reject(error);
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            resolve(downloadURL);
+          })
+        }
+      )
+    })
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -350,7 +408,7 @@ export default function AddListing() {
               </span>
             </p>
 
-            <div className="flex gap-4">
+            <div className="flex gap-4 jus">
               <motion.div
                 whileTap={{
                   boxShadow: "0px 0px 8px rgb(255,255,255)",
@@ -363,16 +421,22 @@ export default function AddListing() {
                 whileHover={{
                   scale: 0.98,
                 }}
-                className="relative overflow-hidden px-8 py-4 rounded-2xl bg-slate-500"
+                className="relative text-center overflow-hidden px-8 py-4 w-[60%] rounded-2xl bg-slate-500"
               >
                 <label className="uppercase text-lg">choose images</label>
                 <input
+                  onChange={(e) => {
+                    setImages(Array.from(e.target.files) || []);
+                  }}
                   className="opacity-0 absolute top-0 left-0 h-full w-full cursor-pointer"
                   type="file"
+                  multiple
+                  accept="image/*"
                 />
               </motion.div>
               <motion.button
                 type="button"
+                onClick={handleImageSubmit}
                 whileTap={{
                   boxShadow: "0px 0px 8px rgb(82,92,235)",
                   scale: 1.09,
@@ -384,7 +448,7 @@ export default function AddListing() {
                 whileHover={{
                   scale: 0.98,
                 }}
-                className="px-7 py-4 rounded-2xl bg-secondary uppercase"
+                className="px-7 py-4 w-[40%] rounded-2xl bg-secondary uppercase"
               >
                 Upload
               </motion.button>
