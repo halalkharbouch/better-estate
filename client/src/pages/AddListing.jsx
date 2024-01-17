@@ -86,6 +86,7 @@ export default function AddListing() {
     } else {
       setImagesUploadError("You can only upload 6 images max");
       setUploadingImages(false);
+      
     }
   };
 
